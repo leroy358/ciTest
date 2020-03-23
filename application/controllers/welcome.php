@@ -25,7 +25,8 @@ class Welcome extends CI_Controller {
 //		$this->load->view('welcome_message');
 
         $path = 'D:/'.time().'.pdf';
-        $cmd = 'D:\wkhtmltopdf\bin\wkhtmltopdf.exe -q  -B 0 -L 0 -R 0 -T 0 -s A4 --no-background --disable-smart-shrinking http://citest.com/welcome/chart '.$path;
+//        $cmd = 'D:\wkhtmltopdf\bin\wkhtmltopdf.exe -q  -B 0 -L 0 -R 0 -T 0 -s A4 --no-background --disable-smart-shrinking http://citest.com/welcome/chart '.$path;
+        $cmd = 'D:\wkhtmltopdf\bin\wkhtmltopdf.exe -q  -B 0 -L 0 -R 0 -T 0 -s A4 --no-stop-slow-scripts  --disable-smart-shrinking http://citest.com/welcome/chart '.$path;
         echo $cmd;
 //        exit();
         exec($cmd, $array, $status);

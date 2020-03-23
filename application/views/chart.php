@@ -30,8 +30,8 @@
                 min-height: initial;
                 box-shadow: initial;
                 background: initial;
-                page-break-after: always;
-                page-break-before: always;
+                /*page-break-after: always;*/
+                /*page-break-before: always;*/
             }
         }
         .preview-item {
@@ -50,7 +50,7 @@
             bottom: 0;
         }
         tr {
-            height: 24px;
+            height: 28px;
         }
         .border-orange {
             border-bottom: 1px dashed orange;
@@ -65,14 +65,20 @@
             position: absolute;
         }
         .day-bp-column {
-            left: 10px;
-            width: 10px;
+            left: 4px;
+            width: 12px;
+            background-color: white;
             border: 2px solid dodgerblue;
+            /*z-index: 10;*/
         }
         .night-bp-column {
-            right: 10px;
-            width: 10px;
+            right: 4px;
+            width: 12px;
             background-color: dodgerblue;
+            /*z-index: 10;*/
+        }
+        .bg-orange {
+            background-color: #f5eee1;
         }
     </style>
 </head>
@@ -94,8 +100,8 @@
                 </div>
                 <div class="preview-item-body">
                     <table border="2px;" style="border-collapse: collapse;text-align: center">
-                        <tr>
-                            <td rowspan="3">日期（星期）</td>
+                        <tr class="bg-orange">
+                            <td rowspan="3" colspan="2">日期（星期）</td>
                             <?php
                                 for($col = 0; $col < 16; $col++) {
                             ?>
@@ -105,7 +111,7 @@
                             ?>
                             <td rowspan="3"></td>
                         </tr>
-                        <tr>
+                        <tr class="bg-orange">
                             <?php
                             for($col = 0; $col < 16; $col++) {
                                 $this_day = date('w', strtotime($start_time) + $col * 86400)
@@ -115,7 +121,7 @@
                             }
                             ?>
                         </tr>
-                        <tr>
+                        <tr class="bg-orange">
                             <?php
                             for($col = 0; $col < 16; $col++) {
                             ?>
@@ -128,7 +134,7 @@
                             ?>
                         </tr>
                         <tr>
-                            <td rowspan="8">血压<br>（mmHg）</td>
+                            <td rowspan="8" colspan="2">血压<br>（mmHg）</td>
                             <?php
                             for($col = 0; $col < 16; $col++) {
                             ?>
@@ -137,27 +143,19 @@
                             }
                             ?>
                             <td rowspan="8"><span style="float: right; font-size: 10px; color: orange">（mmHg）</span></td>
-<!--                            <td>血压<br>（mmHg）</td>-->
-<!--                            <td>-->
-<!--                                --><?php
-//                                    for($col = 0; $col < 15; $col++) {
-//                                    ?>
-<!--                                    <td class="border-dashed bp"></td>-->
-<!--                                --><?php
-//                                }
-//                                ?>
-<!--                            </td>-->
-
-<!--                            <td><span style="float: right; font-size: 10px; color: orange">（mmHg）</span></td>-->
                         </tr>
                         <?php
                         for($row = 0; $row < 7; $row++) {
                             $border_orange = FALSE;
                             $relative_position = FALSE;
+                            $border_bottom_dashed = TRUE;
                             if ($row == 0 || $row == 5) $border_orange = TRUE;
-                            if ($row == 6) $relative_position = TRUE;
+                            if ($row == 6){
+                                $relative_position = TRUE;
+                                $border_bottom_dashed = FALSE;
+                            }
                         ?>
-                            <tr class="<?= $border_orange? 'border-orange' : 'border-dashed' ?>">
+                            <tr class="<?= $border_orange? 'border-orange' : ($border_bottom_dashed ? 'border-dashed' : '') ?>">
                                 <?php
                                 for($col = 0; $col < 16; $col++) {
                                     if($row == 6){
@@ -181,6 +179,118 @@
                         <?php
                         }
                         ?>
+                        <tr class="bg-orange">
+                            <td rowspan="4">早</td>
+                            <td>测量时间</td>
+                            <?php
+                                for($col=0; $col<16; $col++){
+                            ?>
+                                    <td></td>
+                            <?php
+                                }
+                            ?>
+                            <td>平均</td>
+                        </tr>
+                        <tr class="bg-orange">
+                            <td>最高血压</td>
+                            <?php
+                            for($col=0; $col<16; $col++){
+                                ?>
+                                <td></td>
+                                <?php
+                            }
+                            ?>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-orange">
+                            <td>最低血压</td>
+                            <?php
+                            for($col=0; $col<16; $col++){
+                                ?>
+                                <td></td>
+                                <?php
+                            }
+                            ?>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-orange">
+                            <td>脉搏</td>
+                            <?php
+                            for($col=0; $col<16; $col++){
+                                ?>
+                                <td></td>
+                                <?php
+                            }
+                            ?>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-orange">
+                            <td rowspan="4">晚</td>
+                            <td>测量时间</td>
+                            <?php
+                            for($col=0; $col<16; $col++){
+                                ?>
+                                <td></td>
+                                <?php
+                            }
+                            ?>
+                            <td>平均</td>
+                        </tr>
+                        <tr class="bg-orange">
+                            <td>最高血压</td>
+                            <?php
+                            for($col=0; $col<16; $col++){
+                                ?>
+                                <td></td>
+                                <?php
+                            }
+                            ?>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-orange">
+                            <td>最低血压</td>
+                            <?php
+                            for($col=0; $col<16; $col++){
+                                ?>
+                                <td></td>
+                                <?php
+                            }
+                            ?>
+                            <td></td>
+                        </tr>
+                        <tr class="bg-orange">
+                            <td>脉搏</td>
+                            <?php
+                            for($col=0; $col<16; $col++){
+                                ?>
+                                <td></td>
+                                <?php
+                            }
+                            ?>
+                            <td></td>
+                        </tr>
+                        <tr style="height: 72px">
+                            <td colspan="2">服药次数（次）</td>
+                            <?php
+                            for($col=0; $col<16; $col++){
+                                ?>
+                                <td></td>
+                                <?php
+                            }
+                            ?>
+                            <td></td>
+                        </tr>
+                        <tr style="height: 240px">
+                            <td colspan="2">备注（症状等）</td>
+                            <?php
+                            for($col=0; $col<16; $col++){
+                                ?>
+                                <td></td>
+                                <?php
+                            }
+                            ?>
+                            <td></td>
+                        </tr>
 
                     </table>
                 </div>
@@ -203,6 +313,14 @@
         <?php
             }
         ?>
+        <div class="preview-item">
+            <div class="header">
+                <span>早晚血压手账（期间：<?= $start_time ?> ~ <?= $end_time ?>）</span>
+                <span class="pat-name" style="float: right">姓名：<?= $pat_name ?></span>
+            </div>
+            <div class="preview-item-body">
+            </div>
+        </div>
 <!--    <div class="preview-item">-->
 <!--        <div class="preview-item-body"></div>-->
 <!--        <div class="page-view">2/3</div>-->
