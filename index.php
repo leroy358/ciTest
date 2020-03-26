@@ -200,6 +200,9 @@ if (defined('ENVIRONMENT'))
  *
  */
 
+
+require_once 'const_config/const_config.php';
+
 require_once 'vendor/autoload.php';
 
 require_once BASEPATH.'core/CodeIgniter.php';

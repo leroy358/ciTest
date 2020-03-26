@@ -47,7 +47,32 @@ class Welcome extends CI_Controller {
 
     public function chart()
     {
-        $this->load->view("chart");
+        $start = '2018-08-21';
+        $end = '2018-09-20';
+        $start = strtotime($start);
+        $end = strtotime($end);
+
+        $date = [];
+        for($t = $start; $t <= $end; $t += 86400){
+            $this_day = date('Y-m-d', $t);
+            $next_day = date('Y-m-d', $t + 86400);
+            // 获取当天最早的一条记录
+//            $earliest =；
+            // 获取当天最晚的一条记录
+//            $latest = ;
+            // 获取最早一条数据在内的10分钟后的3条数据
+//            $morning = ;
+            // 获取最晚一条数据在内的10分钟前的3条数据
+//            $evening = ;
+        }
+        var_dump($date);
+//        $this->load->view("chart");
+    }
+
+    public function TestDb()
+    {
+        $this->load->model('C_app_bp_model', 'cabm');
+        $this->cabm->GetEarliestBp(300912, '2020-02-03');
     }
 }
 
