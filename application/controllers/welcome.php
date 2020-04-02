@@ -26,7 +26,7 @@ class Welcome extends CI_Controller {
 
         $path = 'D:/'.time().'.pdf';
 //        $cmd = 'D:\wkhtmltopdf\bin\wkhtmltopdf.exe -q  -B 0 -L 0 -R 0 -T 0 -s A4 --no-background --disable-smart-shrinking http://citest.com/welcome/chart '.$path;
-        $cmd = 'D:\wkhtmltopdf\bin\wkhtmltopdf.exe -q  -B 0 -L 0 -R 0 -T 0 -s A4 --no-stop-slow-scripts  --disable-smart-shrinking http://citest.com/welcome/chart '.$path;
+        $cmd = 'D:\wkhtmltopdf\bin\wkhtmltopdf.exe -q  -B 0 -L 0 -R 0 -T 0 -s A4 --no-stop-slow-scripts  --disable-smart-shrinking http://citest.com/welcome/charttest '.$path;
         echo $cmd;
 //        exit();
         exec($cmd, $array, $status);
@@ -73,6 +73,11 @@ class Welcome extends CI_Controller {
     {
         $this->load->model('C_app_bp_model', 'cabm');
         $this->cabm->GetEarliestBp(300912, '2020-02-03');
+    }
+
+    public function chartTest()
+    {
+        $this->load->view("chart_test");
     }
 }
 
